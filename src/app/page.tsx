@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { setTimeout } from "timers/promises";
 
 async function getData() {
     const res = await fetch('http://192.168.0.218:7878/api/v3/history?includeMovie=true', {
@@ -18,8 +17,17 @@ async function getData() {
 }
 
 async function ShowData() {
-    const data = await getData();
-    return <pre>{JSON.stringify(data, null, 2)}</pre>
+    const { records: data } = await getData();
+    const images = []
+    for(const movie in data) {
+        images.push(<img src={data[movie].movie.images[0].url} alt='Image' width={300} height={450} />)
+    }
+
+    return (
+        <>
+            {images}
+        </>
+    )
 }
 
 export default async function Home() {
