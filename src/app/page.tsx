@@ -20,13 +20,13 @@ async function ShowData() {
     const { records: data } = await getData();
     const images = []
     for(const movie in data) {
-        images.push(<img src={data[movie].movie.images[0].url} alt='Image' width={300} height={450} />)
+        images.push(<img src={data[movie].movie.images[0].url} alt='Image' width={300} height={450} style={{'display': 'inline', 'margin': '10px'}} />)
     }
 
     return (
-        <>
+        <div style={{'backgroundColor': 'grey', 'padding': '10px', 'margin': 'auto', 'maxWidth': '1500px','width': '70vw','justifyItems': 'center', 'display': 'flex', 'overflow': 'auto'}} >
             {images}
-        </>
+        </div>
     )
 }
 
