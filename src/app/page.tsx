@@ -10,7 +10,7 @@ async function getData() {
 
     if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
+        throw new Error('Failed to fetch data');
     }
     //await setTimeout(5000);
     return res.json();
@@ -18,13 +18,17 @@ async function getData() {
 
 async function ShowData() {
     const { records: data } = await getData();
-    const images = []
+    const images = [];
     for(const movie in data) {
-        images.push(<img src={data[movie].movie.images[0].url} alt='Image' width={300} height={450} style={{'display': 'inline', 'margin': '10px'}} />)
+        console.log(data[movie].movie.images);
+        images.push(
+                <div style={{backgroundImage: `url(${data[movie].movie.images[0].url})`}} className=' group/hover flex-none w-[200px] h-[300px] hover:blur-sm bg-contain bg-center bg-no-repeat rounded-lg'>
+                </div>
+        )
     }
 
     return (
-        <div style={{'backgroundColor': 'grey', 'padding': '10px', 'margin': 'auto', 'maxWidth': '1500px','width': '70vw','justifyItems': 'center', 'display': 'flex', 'overflow': 'auto'}} >
+        <div className='bg-gradient-to-r from-cyan-500 to-blue-500 flex flew-row flew-nowrap m-5 overflow-hidden hover:overflow-x-auto rounded-lg gap-4 p-4 shadow-2xl' >
             {images}
         </div>
     )
