@@ -20,7 +20,6 @@ async function ShowData() {
     const { records: data } = await getData();
     const images = [];
     for(const movie in data) {
-        console.log(data[movie].movie.images);
         images.push(
                 <div style={{backgroundImage: `url(${data[movie].movie.images[0].url})`}} className=' group/hover flex-none w-[200px] h-[300px] hover:blur-sm bg-contain bg-center bg-no-repeat rounded-lg'>
                 </div>
